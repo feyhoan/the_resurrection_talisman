@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "bedtraveler",
+	"version": "${version}",
+	"name": "BedTraveler",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/bedtraveler/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.feyhoan.bedtraveler.BedTraveler"
+		],
+		"client": [
+			"net.feyhoan.bedtraveler.BedTravelerClient"
+		],
+		"fabric-datagen": [
+			"net.feyhoan.bedtraveler.BedTravelerDataGenerator"
+		]
+	},
+	"mixins": [
+		"bedtraveler.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.20.1",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
