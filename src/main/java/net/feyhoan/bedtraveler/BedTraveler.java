@@ -2,6 +2,9 @@ package net.feyhoan.bedtraveler;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.feyhoan.bedtraveler.block.ModBlocks;
+import net.feyhoan.bedtraveler.item.ModItemGroups;
+import net.feyhoan.bedtraveler.item.ModItems;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,6 +14,8 @@ public class BedTraveler implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		LOGGER.info("Hello Fabric world!");
+		ModItemGroups.registerItemGroups();
+		ModItems.registerModItems();
+		ModBlocks.registerModBlocks();
 	}
 }
