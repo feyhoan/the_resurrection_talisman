@@ -6,6 +6,7 @@ import net.feyhoan.bedtraveler.block.ModBlocks;
 import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.BlockTags;
+import net.minecraft.registry.tag.ItemTags;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 
@@ -18,11 +19,32 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
 
     @Override
     protected void configure(RegistryWrapper.WrapperLookup arg) {
-        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+        /*getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
                 .add(ModBlocks.RUBY_BLOCK);
 
         getOrCreateTagBuilder(BlockTags.NEEDS_STONE_TOOL)
-                .add(ModBlocks.RUBY_BLOCK);
+                .add(ModBlocks.RUBY_BLOCK);*/
+
+        getOrCreateTagBuilder(BlockTags.LOGS)
+                .add(ModBlocks.CANDY_TREE_LOG)
+                .add(ModBlocks.CANDY_TREE_WOOD)
+                .add(ModBlocks.JELLY_TREE_LOG)
+                .add(ModBlocks.JELLY_TREE_WOOD);
+
+
+        getOrCreateTagBuilder(BlockTags.AXE_MINEABLE)
+                .add(ModBlocks.CANDY_TREE_LOG)
+                .add(ModBlocks.CANDY_TREE_WOOD)
+                .add(ModBlocks.CANDY_TREE_PLANKS)
+                .add(ModBlocks.JELLY_TREE_LOG)
+                .add(ModBlocks.JELLY_TREE_WOOD)
+                .add(ModBlocks.CANDY_TREE_PLANKS);
+
+        getOrCreateTagBuilder(BlockTags.PICKAXE_MINEABLE)
+                .add(ModBlocks.LOLLIPOP_ORE);
+
+        getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
+                .add(ModBlocks.LOLLIPOP_ORE);
 
     }
 }

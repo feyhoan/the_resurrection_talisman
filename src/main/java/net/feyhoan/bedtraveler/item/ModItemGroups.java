@@ -12,14 +12,32 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
 public class ModItemGroups {
-    public static final ItemGroup RUBY_GROUP = Registry.register(Registries.ITEM_GROUP,
+
+    public static final ItemGroup BEDTRAVELER_GROUP = Registry.register(Registries.ITEM_GROUP,
             new Identifier(BedTraveler.MOD_ID, "bedtraveler"),
             FabricItemGroup.builder().displayName(Text.translatable("itemgroup.bedtraveler"))
                     .icon(() -> new ItemStack(Items.BLACK_BED)).entries((displayContext, entries) -> {
-                        entries.add(ModItems.RUBY);
-                        entries.add(ModBlocks.RUBY_BLOCK);
-                        entries.add(Items.BLACK_BED);
+                        entries.add(ModBlocks.CANDY_TREE_LOG);
+                        entries.add(ModBlocks.CANDY_TREE_WOOD);
+                        entries.add(ModBlocks.CANDY_TREE_PLANKS);
+                        entries.add(ModBlocks.CANDY_TREE_LEAVES);
 
+                        entries.add(ModBlocks.JELLY_TREE_LOG);
+                        entries.add(ModBlocks.JELLY_TREE_WOOD);
+                        entries.add(ModBlocks.JELLY_TREE_PLANKS);
+                        entries.add(ModBlocks.JELLY_TREE_LEAVES);
+
+                        entries.add(ModBlocks.CANDY_TREE_SAPLING);
+                        entries.add(ModBlocks.JELLY_TREE_SAPLING);
+
+                        entries.add(ModBlocks.LOLLIPOP_ORE);
+                        entries.add(ModItems.LOLLIPOP_SHARD);
+                        entries.add(ModItems.LOLLIPOP);
+                        entries.add(ModItems.LOLLIPOP_NUGGET);
+                        entries.add(ModItems.LOLLIPOP_INGOT);
+                        entries.add(ModItems.LOLLIPOP_SWORD);
+                        entries.add(ModItems.LOLLIPOP_PICKAXE);
+                        entries.add(ModItems.LOLLIPOP_AXE);
                     }).build());
 
 

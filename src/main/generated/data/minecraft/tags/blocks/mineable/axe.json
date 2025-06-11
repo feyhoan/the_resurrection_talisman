@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "bedtraveler:candy_tree_log",
+    "bedtraveler:candy_tree_wood",
+    "bedtraveler:candy_tree_planks",
+    "bedtraveler:jelly_tree_log",
+    "bedtraveler:jelly_tree_wood",
+    "bedtraveler:candy_tree_planks"
+  ]
+}

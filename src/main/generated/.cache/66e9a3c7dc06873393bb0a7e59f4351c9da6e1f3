@@ -1,0 +1,5 @@
+// 1.20.1	2025-06-11T11:40:47.1173398	BedTraveler/Tags for minecraft:block
+4217fb681bf8622aa7e11b643640c8a5a432c2ea data\minecraft\tags\blocks\logs.json
+5e85a0deed1b10c37f98606a54e9db53008286d4 data\minecraft\tags\blocks\needs_diamond_tool.json
+5e85a0deed1b10c37f98606a54e9db53008286d4 data\minecraft\tags\blocks\mineable\pickaxe.json
+987cbb82074a3df4e90c1db7d6afd34823ebd447 data\minecraft\tags\blocks\mineable\axe.json

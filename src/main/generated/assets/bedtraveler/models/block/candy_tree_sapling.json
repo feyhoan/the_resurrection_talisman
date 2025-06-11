@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "bedtraveler:block/candy_tree_sapling"
+  }
+}

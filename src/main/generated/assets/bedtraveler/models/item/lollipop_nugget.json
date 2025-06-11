@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bedtraveler:item/lollipop_nugget"
+  }
+}
