@@ -8,8 +8,17 @@ import net.minecraft.client.render.entity.MobEntityRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 
+import java.util.Map;
+import java.util.Random;
+
 public class JellyBearRenderer extends MobEntityRenderer<JellyBearEntity, JellyBearModel<JellyBearEntity>> {
-    private static final Identifier TEXTURE = new Identifier(BedTraveler.MOD_ID, "textures/entity/jelly_bear.png");
+    private static final Map<Integer, Identifier> TEXTURES = Map.of(
+            0, new Identifier(BedTraveler.MOD_ID, "textures/entity/jelly_bear_green.png"),
+            1, new Identifier(BedTraveler.MOD_ID, "textures/entity/jelly_bear_red.png"),
+            2, new Identifier(BedTraveler.MOD_ID, "textures/entity/jelly_bear_yellow.png")
+    );
+
+    private final Random random = new Random();
 
     public JellyBearRenderer(EntityRendererFactory.Context context, JellyBearModel<JellyBearEntity> entityModel, float f) {
         super(context, entityModel, f);
@@ -17,8 +26,12 @@ public class JellyBearRenderer extends MobEntityRenderer<JellyBearEntity, JellyB
 
     @Override
     public Identifier getTexture(JellyBearEntity entity) {
-        return TEXTURE;
+        int colorVariant = entity.getColorVariant();
+        BedTraveler.LOGGER.info("JellyBearRenderer/getTexture: Rendering with color {}", colorVariant);
+        return TEXTURES.getOrDefault(colorVariant, TEXTURES.get(0));
     }
+
+
 
     @Override
     public void render(JellyBearEntity mobEntity, float f, float g, MatrixStack matrixStack,

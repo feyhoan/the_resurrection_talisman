@@ -3,6 +3,7 @@ package net.feyhoan.bedtraveler.world.biome;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.feyhoan.bedtraveler.BedTraveler;
+import net.feyhoan.bedtraveler.entity.ModEntities;
 import net.feyhoan.bedtraveler.world.ModPlacedFeatures;
 import net.minecraft.client.sound.MusicType;
 import net.minecraft.client.sound.SoundSystem;
@@ -95,7 +96,7 @@ public class ModBiomes {
 
     public static Biome JellyBeanForest(Registerable<Biome> context) {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-        //spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(EntityType.RABBIT, 2, 2, 5));
+        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.JELLY_BEAR, 8, 2, 4));
 
         DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
 
