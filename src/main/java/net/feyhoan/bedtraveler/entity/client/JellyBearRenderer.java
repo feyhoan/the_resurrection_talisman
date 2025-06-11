@@ -26,9 +26,11 @@ public class JellyBearRenderer extends MobEntityRenderer<JellyBearEntity, JellyB
 
     @Override
     public Identifier getTexture(JellyBearEntity entity) {
-        int colorVariant = entity.getColorVariant();
-        BedTraveler.LOGGER.info("JellyBearRenderer/getTexture: Rendering with color {}", colorVariant);
-        return TEXTURES.getOrDefault(colorVariant, TEXTURES.get(0));
+        return switch(entity.getColor()) {
+            case RED -> new Identifier(BedTraveler.MOD_ID, "textures/entity/jelly_bear_red.png");
+            case YELLOW -> new Identifier(BedTraveler.MOD_ID, "textures/entity/jelly_bear_yellow.png");
+            default -> new Identifier(BedTraveler.MOD_ID, "textures/entity/jelly_bear_green.png");
+        };
     }
 
 

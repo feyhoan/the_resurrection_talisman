@@ -6,7 +6,7 @@
       "minecraft:canyon"
     ]
   },
-  "downfall": 0.5,
+  "downfall": 0.3,
   "effects": {
     "fog_color": 1922560,
     "foliage_color": 3774728,
@@ -58,7 +58,7 @@
         "type": "bedtraveler:jelly_bear",
         "maxCount": 4,
         "minCount": 2,
-        "weight": 3
+        "weight": 7
       },
       {
         "type": "minecraft:sheep",

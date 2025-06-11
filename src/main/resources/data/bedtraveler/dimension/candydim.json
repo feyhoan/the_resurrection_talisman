@@ -9,25 +9,25 @@
         {
           "biome": "bedtraveler:jelly_bean_forest",
           "parameters": {
-            "temperature": 0.15,
-            "humidity": 0,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
-            "depth": 0,
-            "offset": 0
+            "temperature": -0.1,
+            "humidity": 0.1,
+            "continentalness": 0.9,
+            "erosion": 0.2,
+            "weirdness": 0.0,
+            "depth": 0.0,
+            "offset": 0.0
           }
         },
         {
           "biome": "bedtraveler:lollipop_valley",
           "parameters": {
-            "temperature": 0,
-            "humidity": 0,
-            "continentalness": 0,
-            "erosion": 0,
-            "weirdness": 0,
-            "depth": 0,
-            "offset": 0
+            "temperature": 0.0,
+            "humidity": 0.2,
+            "continentalness": 0.9,
+            "erosion": 0.0,
+            "weirdness": 0.0,
+            "depth": 0.0,
+            "offset": 0.0
           }
         }
       ]

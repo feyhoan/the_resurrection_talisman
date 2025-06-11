@@ -70,7 +70,7 @@ public class ModBiomes {
 
         return new Biome.Builder()
                 .precipitation(true)
-                .downfall(0.4f)
+                .downfall(0.3f)
                 .temperature(0.7f)
                 .generationSettings(biomeBuilder.build())
                 .spawnSettings(spawnBuilder.build())
@@ -96,7 +96,16 @@ public class ModBiomes {
 
     public static Biome JellyBeanForest(Registerable<Biome> context) {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
-        spawnBuilder.spawn(SpawnGroup.CREATURE, new SpawnSettings.SpawnEntry(ModEntities.JELLY_BEAR, 8, 2, 4));
+        spawnBuilder.spawn(SpawnGroup.CREATURE,
+                new SpawnSettings.SpawnEntry(
+                        ModEntities.JELLY_BEAR,
+                        7,  // Вес спавна
+                        2,  // Минимальная группа
+                        4   // Максимальная группа
+                ));
+
+        // Добавьте это для логов:
+        BedTraveler.LOGGER.info("JellyBeanForest biome initialized with JellyBear spawns");
 
         DefaultBiomeFeatures.addFarmAnimals(spawnBuilder);
 
@@ -121,7 +130,7 @@ public class ModBiomes {
 
         return new Biome.Builder()
                 .precipitation(true)
-                .downfall(0.5f)
+                .downfall(0.3f)
                 .temperature(0.9f)
                 .generationSettings(biomeBuilder.build())
                 .spawnSettings(spawnBuilder.build())

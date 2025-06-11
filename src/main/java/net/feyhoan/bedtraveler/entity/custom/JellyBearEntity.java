@@ -3,9 +3,7 @@ package net.feyhoan.bedtraveler.entity.custom;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.feyhoan.bedtraveler.BedTraveler;
 import net.feyhoan.bedtraveler.entity.ModEntities;
-import net.minecraft.entity.AnimationState;
-import net.minecraft.entity.EntityPose;
-import net.minecraft.entity.EntityType;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -25,6 +23,9 @@ import net.minecraft.recipe.Ingredient;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.world.LocalDifficulty;
+import net.minecraft.world.ServerWorldAccess;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -32,39 +33,104 @@ public class JellyBearEntity extends AnimalEntity {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
-    private static final TrackedData<Integer> COLOR_VARIANT = DataTracker.registerData(JellyBearEntity.class, TrackedDataHandlerRegistry.INTEGER);
-    private int colorVariant = -1; // Временное хранилище для сервера
+    // Система цветов как у овец
+    private static final TrackedData<Byte> COLOR = DataTracker.registerData(JellyBearEntity.class, TrackedDataHandlerRegistry.BYTE);
     public static final String COLOR_KEY = "Color";
-    private boolean colorInitialized = false;
+
+    // Наши 3 цвета (0-зелёный, 1-красный, 2-жёлтый)
+    public enum JellyBearColor {
+        GREEN(0), RED(1), YELLOW(2);
+
+        private final byte id;
+
+        JellyBearColor(int id) {
+            this.id = (byte)id;
+        }
+
+        public byte getId() {
+            return id;
+        }
+
+        public static JellyBearColor byId(byte id) {
+            return switch(id) {
+                case 1 -> RED;
+                case 2 -> YELLOW;
+                default -> GREEN;
+            };
+        }
+    }
 
     public JellyBearEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
+    }
+
+    @Override
+    protected void initDataTracker() {
+        super.initDataTracker();
+        this.dataTracker.startTracking(COLOR, (byte)0); // По умолчанию зелёный
+    }
+
+    // Генерация случайного цвета при спавне
+    public static JellyBearColor generateDefaultColor(Random random) {
+        int i = random.nextInt(100);
+        if (i < 40) {
+            return JellyBearColor.GREEN;
+        } else if (i < 80) {
+            return JellyBearColor.RED;
+        } else {
+            return JellyBearColor.YELLOW;
+        }
+    }
+
+    @Override
+    public EntityData initialize(ServerWorldAccess world, LocalDifficulty difficulty,
+                                 SpawnReason spawnReason, @Nullable EntityData entityData,
+                                 @Nullable NbtCompound entityNbt) {
+        // Устанавливаем случайный цвет при спавне в мире
+        this.setColor(generateDefaultColor(world.getRandom()));
+        return super.initialize(world, difficulty, spawnReason, entityData, entityNbt);
+    }
+
+    public JellyBearColor getColor() {
+        return JellyBearColor.byId(this.dataTracker.get(COLOR));
+    }
+
+    public void setColor(JellyBearColor color) {
+        this.dataTracker.set(COLOR, color.getId());
+    }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putByte(COLOR_KEY, this.getColor().getId());
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        if (nbt.contains(COLOR_KEY)) {
+            this.setColor(JellyBearColor.byId(nbt.getByte(COLOR_KEY)));
+        }
+    }
+
+    @Override
+    public void onDeath(DamageSource source) {
+        super.onDeath(source);
+
+        if (!this.getWorld().isClient()) {
+            ItemStack drop = switch(this.getColor()) {
+                case RED -> new ItemStack(Items.RED_DYE);
+                case YELLOW -> new ItemStack(Items.YELLOW_DYE);
+                default -> new ItemStack(Items.GREEN_DYE);
+            };
+            this.dropStack(drop);
+        }
     }
 
 
     @Override
     public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
         return null;
-    }
-
-    @Override
-    protected void initDataTracker() {
-        super.initDataTracker();
-        this.dataTracker.startTracking(COLOR_VARIANT, 0); // Значение по умолчанию
-    }
-
-    @Override
-    public void onTrackedDataSet(TrackedData<?> data) {
-        super.onTrackedDataSet(data);
-        if (data.equals(COLOR_VARIANT)) {
-            BedTraveler.LOGGER.info("Color updated to {}", getColorVariant());
-        }
-    }
-
-    @Override
-    public void onSpawnPacket(EntitySpawnS2CPacket packet) {
-        super.onSpawnPacket(packet);
-        BedTraveler.LOGGER.info("JellyBearEntity/onSpawnPacket: Client received spawn packet");
     }
 
     private void setupAnimationStates() {
@@ -88,11 +154,6 @@ public class JellyBearEntity extends AnimalEntity {
         super.tick();
         if (this.getWorld().isClient()) {
             setupAnimationStates();
-        }
-        if (!this.colorInitialized && !this.getWorld().isClient()) {
-            this.setColorVariant(this.random.nextInt(3));
-            this.colorInitialized = true;
-            BedTraveler.LOGGER.info("Initialized random color: {}", getColorVariant());
         }
     }
 
@@ -129,49 +190,5 @@ public class JellyBearEntity extends AnimalEntity {
     @Override
     protected SoundEvent getDeathSound() {
         return SoundEvents.ENTITY_DOLPHIN_DEATH;
-    }
-
-    public void setColorVariant(int variant) {
-        this.dataTracker.set(COLOR_VARIANT, variant);
-    }
-
-    public int getColorVariant() {
-        return this.dataTracker.get(COLOR_VARIANT);
-    }
-
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putInt(COLOR_KEY, this.getColorVariant());
-    }
-
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        if (nbt.contains(COLOR_KEY)) {
-            int color = nbt.getInt(COLOR_KEY);
-            this.setColorVariant(color);
-            this.colorInitialized = true; // Помечаем как инициализированное
-            BedTraveler.LOGGER.info("Color loaded from NBT: {}", color);
-        }
-    }
-
-    @Override
-    public void onDeath(DamageSource damageSource) {
-        // Сохраняем цвет перед вызовом super.onDeath()
-        int color = this.getColorVariant();
-        BedTraveler.LOGGER.info("JellyBearEntity/onDeath/Stored color before death: {}", color);
-
-        super.onDeath(damageSource); // Вызываем родительский метод
-
-        if (!getWorld().isClient()) {
-            ItemStack drop = switch (color) { // Используем сохраненное значение
-                case 1 -> new ItemStack(Items.RED_DYE);
-                case 2 -> new ItemStack(Items.YELLOW_DYE);
-                default -> new ItemStack(Items.GREEN_DYE);
-            };
-            BedTraveler.LOGGER.info("JellyBearEntity/onDeath/Dropping for color: {}", color);
-            this.dropStack(drop);
-        }
     }
 }
