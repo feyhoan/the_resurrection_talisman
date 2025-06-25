@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "bedtraveler:block/candy_tree_leaves"
-  }
-}

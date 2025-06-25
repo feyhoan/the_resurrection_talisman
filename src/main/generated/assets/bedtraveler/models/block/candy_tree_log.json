@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "bedtraveler:block/candy_tree_log_top",
-    "side": "bedtraveler:block/candy_tree_log"
-  }
-}
