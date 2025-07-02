@@ -3,13 +3,13 @@
 	"id": "the_resurrection_talisman",
 	"version": "${version}",
 	"name": "TheResurrectionTalisman",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Create a mysterious resurrection talisman and walk the fine line between life and death.",
 	"authors": [
-		"Me!"
+		"feyhoan"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"sources": "https://github.com/feyhoan/the_resurrection_talisman"
 	},
 	"license": "MIT",
 	"icon": "assets/the_resurrection_talisman/icon.png",

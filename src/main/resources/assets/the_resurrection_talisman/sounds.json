@@ -1,0 +1,35 @@
+{
+  "ambient.overworld_limbo": {
+    "sounds": [
+      {
+        "name": "the_resurrection_talisman:overworld_limbo_ambient",
+        "stream": true
+      }
+    ]
+  },
+
+  "entity.lost_spirit_1": {
+    "sounds": [
+      {
+        "name": "the_resurrection_talisman:lost_spirit_1",
+        "stream": true
+      }
+    ]
+  },
+  "entity.lost_spirit_2": {
+    "sounds": [
+      {
+        "name": "the_resurrection_talisman:lost_spirit_2",
+        "stream": true
+      }
+    ]
+  },
+  "entity.lost_spirit_3": {
+    "sounds": [
+      {
+        "name": "the_resurrection_talisman:lost_spirit_3",
+        "stream": true
+      }
+    ]
+  }
+}

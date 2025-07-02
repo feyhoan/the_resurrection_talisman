@@ -2,11 +2,9 @@ package net.feyhoan.the_resurrection_talisman.datagen;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
-import net.feyhoan.the_resurrection_talisman.block.ModBlocks;
 import net.feyhoan.the_resurrection_talisman.item.ModItems;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapedRecipeJsonBuilder;
-import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.item.Items;
 import net.minecraft.recipe.book.RecipeCategory;
 import net.minecraft.util.Identifier;
@@ -27,16 +25,17 @@ public class ModRecipeProvider extends FabricRecipeProvider {
                 0.7f, 200, "ruby");
         offerBlasting(exporter, RUBY_SMELTABLES, RecipeCategory.MISC, ModItems.RUBY,
                 0.7f, 100, "ruby");*/
-
-        /*ShapedRecipeJsonBuilder.create(RecipeCategory.FOOD, ModItems.LOLLIPOP, 1)
-                .pattern("LL ")
-                .pattern("LS ")
-                .pattern("  S")
-                .input('S', Items.STICK)
-                .input('L', ModItems.LOLLIPOP_SHARD)
-                .criterion(hasItem(Items.STICK), conditionsFromItem(Items.STICK))
-                .criterion(hasItem(ModItems.LOLLIPOP_SHARD), conditionsFromItem(ModItems.LOLLIPOP_SHARD))
-                .offerTo(exporter, new Identifier(getRecipeName(ModItems.LOLLIPOP)));*/
+        ShapedRecipeJsonBuilder.create(RecipeCategory.COMBAT, ModItems.RESURRECTION_TALISMAN, 1)
+                .pattern(" T ")
+                .pattern("SNS")
+                .pattern(" N ")
+                .input('T', Items.TOTEM_OF_UNDYING)
+                .input('S', ModItems.SHARD_OF_THE_SOULS_PRISM)
+                .input('N', Items.NETHERITE_INGOT)
+                .criterion(hasItem(Items.TOTEM_OF_UNDYING), conditionsFromItem(Items.TOTEM_OF_UNDYING))
+                .criterion(hasItem(ModItems.SHARD_OF_THE_SOULS_PRISM), conditionsFromItem(ModItems.SHARD_OF_THE_SOULS_PRISM))
+                .criterion(hasItem(Items.NETHERITE_INGOT), conditionsFromItem(Items.NETHERITE_INGOT))
+                .offerTo(exporter, new Identifier(getRecipeName(ModItems.RESURRECTION_TALISMAN)));
 
     }
 }

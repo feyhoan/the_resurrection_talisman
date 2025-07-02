@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "N": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "S": {
+      "item": "the_resurrection_talisman:shard_of_the_souls_prism"
+    },
+    "T": {
+      "item": "minecraft:totem_of_undying"
+    }
+  },
+  "pattern": [
+    " T ",
+    "SNS",
+    " N "
+  ],
+  "result": {
+    "item": "the_resurrection_talisman:resurrection_talisman"
+  },
+  "show_notification": true
+}

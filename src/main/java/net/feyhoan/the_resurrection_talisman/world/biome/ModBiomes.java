@@ -1,8 +1,11 @@
 package net.feyhoan.the_resurrection_talisman.world.biome;
 
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
+import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.feyhoan.the_resurrection_talisman.TheResurrectionTalisman;
+import net.feyhoan.the_resurrection_talisman.entity.ModEntities;
+import net.feyhoan.the_resurrection_talisman.sounds.ModSounds;
 import net.feyhoan.the_resurrection_talisman.world.ModPlacedFeatures;
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -38,17 +41,16 @@ public class ModBiomes {
 
     public static Biome LollipopValley(Registerable<Biome> context) {
         SpawnSettings.Builder spawnBuilder = new SpawnSettings.Builder();
+        spawnBuilder.spawn(SpawnGroup.CREATURE,
+                new SpawnSettings.SpawnEntry(ModEntities.LOST_SPIRIT, 7, 1, 3));
 
         GenerationSettings.LookupBackedBuilder biomeBuilder =
                 new GenerationSettings.LookupBackedBuilder(
                         context.getRegistryLookup(RegistryKeys.PLACED_FEATURE),
                         context.getRegistryLookup(RegistryKeys.CONFIGURED_CARVER)
                 );
-
         OverworldLimboGeneration(biomeBuilder);
-
         DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
-
 
         return new Biome.Builder()
                 .precipitation(true)
@@ -63,7 +65,7 @@ public class ModBiomes {
                         .grassColor(0x2a2a2a)
                         .foliageColor(0x3f3f3f)
                         .fogColor(0x0e0e0e)
-                        .moodSound(BiomeMoodSound.CAVE)
+                        .loopSound(ModSounds.LIMBO_AMBIENT)
                         .build())
                 .build();
     }

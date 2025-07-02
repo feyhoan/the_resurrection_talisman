@@ -9,6 +9,10 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.feyhoan.the_resurrection_talisman.block.ModBlocks;
+import net.feyhoan.the_resurrection_talisman.entity.ModEntities;
+import net.feyhoan.the_resurrection_talisman.entity.client.LostSpiritModel;
+import net.feyhoan.the_resurrection_talisman.entity.client.LostSpiritRenderer;
+import net.feyhoan.the_resurrection_talisman.entity.client.ModModelLayers;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -16,14 +20,14 @@ import net.minecraft.server.network.ServerPlayerEntity;
 public class TheResurrectionTalismanClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
-        /*EntityRendererRegistry.register(ModEntities.JELLY_BEAR, context ->
-                new JellyBearRenderer(
+        EntityRendererRegistry.register(ModEntities.LOST_SPIRIT,context ->
+                new LostSpiritRenderer(
                         context,
-                        new JellyBearModel<>(context.getPart(ModModelLayers.JELLY_BEAR)),
-                        0.5f  // Shadow size - adjust as needed
+                        new LostSpiritModel<>(context.getPart(ModModelLayers.LOST_SPIRIT)),
+                        0.1f  // Shadow size - adjust as needed
                 )
         );
-        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.JELLY_BEAR, JellyBearModel::getTexturedModelData);*/
+        EntityModelLayerRegistry.registerModelLayer(ModModelLayers.LOST_SPIRIT, LostSpiritModel::getTexturedModelData);
 
         WorldRenderEvents.BEFORE_DEBUG_RENDER.register(context -> {
             MinecraftClient client = MinecraftClient.getInstance();

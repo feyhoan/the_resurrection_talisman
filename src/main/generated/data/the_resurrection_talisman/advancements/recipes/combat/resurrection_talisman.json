@@ -1,0 +1,61 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_netherite_ingot": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:netherite_ingot"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_shard_of_the_souls_prism": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "the_resurrection_talisman:shard_of_the_souls_prism"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:resurrection_talisman"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_totem_of_undying": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:totem_of_undying"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_totem_of_undying",
+      "has_shard_of_the_souls_prism",
+      "has_netherite_ingot",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:resurrection_talisman"
+    ]
+  },
+  "sends_telemetry_event": false
+}

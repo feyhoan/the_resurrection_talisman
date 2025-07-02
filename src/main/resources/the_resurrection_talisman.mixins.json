@@ -3,7 +3,11 @@
 	"package": "net.feyhoan.the_resurrection_talisman.mixin",
 	"compatibilityLevel": "JAVA_17",
 	"mixins": [
-		"ExampleMixin"
+		"ExampleMixin",
+		"MixinServerPlayerEntity",
+		"MixinLivingEntity",
+		"MixinPlayerReturn",
+		"MixinServerWorld"
 	],
 	"injectors": {
 		"defaultRequire": 1

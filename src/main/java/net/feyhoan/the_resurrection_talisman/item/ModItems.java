@@ -24,6 +24,7 @@ public class ModItems {
 
 
     public static final Item RESURRECTION_TALISMAN = registerItem("resurrection_talisman", new ResurrectionTalisman(new FabricItemSettings().maxCount(1).rarity(Rarity.RARE)));
+    public static final Item SHARD_OF_THE_SOULS_PRISM = registerItem("shard_of_the_souls_prism", new Item(new FabricItemSettings().maxCount(16).rarity(Rarity.UNCOMMON)));
 
 
     private static void addItemsToIngredientItemGroup(FabricItemGroupEntries entries) {

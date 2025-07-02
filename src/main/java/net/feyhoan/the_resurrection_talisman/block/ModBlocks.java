@@ -22,6 +22,10 @@ public class ModBlocks {
         return Registry.register(Registries.BLOCK, new Identifier(TheResurrectionTalisman.MOD_ID, name), block);
     }
 
+    public static final Block OVERWORLD_LIMBO_GRASS_BLOCK = registerBlock("overworld_limbo_grass_block",
+            new Block(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK)));
+
+
     private static Item registerBlockItem(String name, Block block) {
         return Registry.register(Registries.ITEM, new Identifier(TheResurrectionTalisman.MOD_ID, name),
                 new BlockItem(block, new FabricItemSettings()));

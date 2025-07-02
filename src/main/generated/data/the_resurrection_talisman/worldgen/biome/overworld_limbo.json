@@ -8,15 +8,10 @@
   },
   "downfall": 0.1,
   "effects": {
+    "ambient_sound": "the_resurrection_talisman:ambient.overworld_limbo",
     "fog_color": 921102,
     "foliage_color": 4144959,
     "grass_color": 2763306,
-    "mood_sound": {
-      "block_search_extent": 8,
-      "offset": 2.0,
-      "sound": "minecraft:ambient.cave",
-      "tick_delay": 6000
-    },
     "sky_color": 2171169,
     "water_color": 7368816,
     "water_fog_color": 7368816
@@ -44,7 +39,14 @@
   "spawners": {
     "ambient": [],
     "axolotls": [],
-    "creature": [],
+    "creature": [
+      {
+        "type": "the_resurrection_talisman:lost_spirit",
+        "maxCount": 3,
+        "minCount": 1,
+        "weight": 7
+      }
+    ],
     "misc": [],
     "monster": [],
     "underground_water_creature": [],
