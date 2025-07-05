@@ -11,6 +11,6 @@ public class CandyTreeSaplingGenerator extends SaplingGenerator {
     @Nullable
     @Override
     protected RegistryKey<ConfiguredFeature<?, ?>> getTreeFeature(Random random, boolean bees) {
-        return ModConfiguredFeatures.CANDY_TREE_KEY;
+        return null; //ModConfiguredFeatures.CANDY_TREE_KEY;
     }
 }

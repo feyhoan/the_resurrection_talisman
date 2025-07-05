@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.feyhoan.the_resurrection_talisman.datagen.*;
 import net.feyhoan.the_resurrection_talisman.world.ModConfiguredFeatures;
+import net.feyhoan.the_resurrection_talisman.world.ModFeatures;
 import net.feyhoan.the_resurrection_talisman.world.ModPlacedFeatures;
 import net.feyhoan.the_resurrection_talisman.world.biome.ModBiomes;
 import net.feyhoan.the_resurrection_talisman.world.dimensions.ModDimensions;
@@ -25,8 +26,8 @@ public class TheResurrectionTalismanDataGenerator implements DataGeneratorEntryp
 
 	@Override
 	public void buildRegistry(RegistryBuilder registryBuilder) {
-		//registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::boostrap);
-		//registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::boostrap);
+		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.BIOME, ModBiomes::boostrap);
 		registryBuilder.addRegistry(RegistryKeys.DIMENSION_TYPE, ModDimensions::bootstrapType);
 	}

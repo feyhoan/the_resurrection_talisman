@@ -1,7 +1,13 @@
 package net.feyhoan.the_resurrection_talisman.mixin;
 
+import net.fabricmc.fabric.mixin.object.builder.TradeOffersTypeAwareBuyForOneEmeraldFactoryMixin;
 import net.feyhoan.the_resurrection_talisman.util.DeathData;
+import net.feyhoan.the_resurrection_talisman.util.UtilParticles;
 import net.feyhoan.the_resurrection_talisman.world.dimensions.ModDimensions;
+import net.minecraft.client.particle.TotemParticle;
+import net.minecraft.client.render.GameRenderer;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -48,6 +54,12 @@ public abstract class MixinPlayerReturn {
                 player.getYaw(),
                 player.getPitch()
         );
+
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 3, false, false));
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 40, 3, false, false));
+        player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 3, false, false));
+
+        UtilParticles.spawnReturnOverworldParticles(player.getServerWorld(), player.getBlockPos());
 
         // Восстановление инвентаря
         DeathData.restoreInventory(player);

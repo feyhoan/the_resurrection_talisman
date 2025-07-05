@@ -40,6 +40,35 @@ public class UtilParticles{
         );
     }
 
+    public static void spawnReturnOverworldParticles(ServerWorld world, BlockPos pos) {
+        // Чёрно-серый туман (DustParticle)
+        ParticleEffect dust = new DustParticleEffect(
+                new Vector3f(0.25f, 0.3f, 0.25f), // RGB (тёмно-серый)
+                1.0f // Размер
+        );
+
+        // Спавн частиц в случайных точках вокруг места смерти
+        for (int i = 0; i < 15; i++) {
+            double x = pos.getX() + 0.3 + (world.random.nextDouble() - 0.3) * 2;
+            double z = pos.getZ() + 0.3 + (world.random.nextDouble() - 0.3) * 2;
+
+            world.spawnParticles(
+                    dust,
+                    x, pos.getY() + 0.1, z,
+                    3, // Количество
+                    0.2, 0.2, 0.2, // Разброс
+                    0.04 // Скорость
+            );
+        }
+
+        // Soul Fire Flame для атмосферы
+        world.spawnParticles(
+                ParticleTypes.CRIMSON_SPORE,
+                pos.getX() + 0.5, pos.getY() + 0.2, pos.getZ() + 0.5,
+                5, 0.2, 0.2, 0.2, 0.02
+        );
+    }
+
     public static ParticleEffect red_glow = new DustParticleEffect(
             new Vector3f(1.0f, 0.0f, 0.0f), // Белый цвет
             1.3f // Яркость

@@ -10,6 +10,7 @@ import net.feyhoan.the_resurrection_talisman.item.ModItemGroups;
 import net.feyhoan.the_resurrection_talisman.item.ModItems;
 import net.feyhoan.the_resurrection_talisman.sounds.ModSounds;
 import net.feyhoan.the_resurrection_talisman.util.ModLootTableModifiers;
+import net.feyhoan.the_resurrection_talisman.world.ModFeatures;
 import net.feyhoan.the_resurrection_talisman.world.gen.ModWorldGeneration;
 import net.kyrptonaught.customportalapi.api.CustomPortalBuilder;
 import net.minecraft.block.Blocks;
@@ -27,6 +28,7 @@ public class TheResurrectionTalisman implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ModFeatures.register();
 		ModItemGroups.registerItemGroups();
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();

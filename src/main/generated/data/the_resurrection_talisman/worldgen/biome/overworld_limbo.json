@@ -32,6 +32,9 @@
     [
       "minecraft:trees_plains",
       "minecraft:patch_grass_badlands"
+    ],
+    [
+      "the_resurrection_talisman:replace_grass_placed"
     ]
   ],
   "has_precipitation": true,
