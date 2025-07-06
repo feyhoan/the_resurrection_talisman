@@ -4,23 +4,19 @@ import net.feyhoan.the_resurrection_talisman.TheResurrectionTalisman;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.gen.feature.*;
 
 public class ModConfiguredFeatures {
-    public static final RegistryKey<ConfiguredFeature<?, ?>> REPLACE_GRASS =
-            registerKey("replace_grass");
+    public static final RegistryKey<ConfiguredFeature<?, ?>> REPLACE_SURFACE =
+            registerKey("replace_surface");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
-        // Получаем конкретную реализацию Feature
-        Feature<DefaultFeatureConfig> feature = ModFeatures.REPLACE_GRASS_FEATURE;
-
-        // Создаем ConfiguredFeature с явным указанием типов
+        Feature<DefaultFeatureConfig> feature = ModFeatures.REPLACE_SURFACE_FEATURE;
         ConfiguredFeature<DefaultFeatureConfig, Feature<DefaultFeatureConfig>> configuredFeature =
                 new ConfiguredFeature<>(feature, new DefaultFeatureConfig());
 
-        context.register(REPLACE_GRASS, configuredFeature);
+        context.register(REPLACE_SURFACE, configuredFeature);
     }
 
     public static RegistryKey<ConfiguredFeature<?, ?>> registerKey(String name) {

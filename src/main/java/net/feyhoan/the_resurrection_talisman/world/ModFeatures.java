@@ -7,8 +7,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.registry.RegistryKey;
-import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.StructureWorldAccess;
@@ -17,17 +15,17 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 
 public class ModFeatures {
-    public static final Feature<DefaultFeatureConfig> REPLACE_GRASS_FEATURE =
-            new ReplaceGrassFeature(DefaultFeatureConfig.CODEC);
+    public static final Feature<DefaultFeatureConfig> REPLACE_SURFACE_FEATURE =
+            new ReplaceSurfaceFeature(DefaultFeatureConfig.CODEC);
 
     public static void register() {
         Registry.register(Registries.FEATURE,
-                new Identifier(TheResurrectionTalisman.MOD_ID, "replace_grass"),
-                REPLACE_GRASS_FEATURE);
+                new Identifier(TheResurrectionTalisman.MOD_ID, "replace_surface"),
+                REPLACE_SURFACE_FEATURE);
     }
 
-    public static class ReplaceGrassFeature extends Feature<DefaultFeatureConfig> {
-        public ReplaceGrassFeature(Codec<DefaultFeatureConfig> configCodec) {
+    public static class ReplaceSurfaceFeature extends Feature<DefaultFeatureConfig> {
+        public ReplaceSurfaceFeature(Codec<DefaultFeatureConfig> configCodec) {
             super(configCodec);
         }
 
@@ -42,9 +40,13 @@ public class ModFeatures {
                         BlockPos pos = origin.add(x, y, z);
                         BlockState state = world.getBlockState(pos);
 
+                        // Заменяем траву
                         if (state.isOf(Blocks.GRASS_BLOCK)) {
                             world.setBlockState(pos, ModBlocks.OVERWORLD_LIMBO_GRASS_BLOCK.getDefaultState(), 3);
-                            break;
+                        }
+                        // Заменяем землю
+                        else if (state.isOf(Blocks.DIRT)) {
+                            world.setBlockState(pos, ModBlocks.OVERWORLD_LIMBO_DIRT.getDefaultState(), 3);
                         }
                     }
                 }

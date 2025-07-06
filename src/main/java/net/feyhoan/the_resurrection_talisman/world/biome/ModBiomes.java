@@ -42,7 +42,7 @@ public class ModBiomes {
         // Добавляем замену травы
         builder.feature(
                 GenerationStep.Feature.TOP_LAYER_MODIFICATION,
-                ModPlacedFeatures.REPLACE_GRASS_PLACED
+                ModPlacedFeatures.REPLACE_SURFACE_PLACED
         );
     }
 
@@ -58,6 +58,7 @@ public class ModBiomes {
                 );
         OverworldLimboGeneration(biomeBuilder);
         DefaultBiomeFeatures.addDefaultGrass(biomeBuilder);
+        DefaultBiomeFeatures.addPlainsTallGrass(biomeBuilder);
 
         return new Biome.Builder()
                 .precipitation(true)

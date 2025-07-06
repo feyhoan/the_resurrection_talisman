@@ -1,6 +1,7 @@
 package net.feyhoan.the_resurrection_talisman.mixin;
 
 import net.fabricmc.fabric.mixin.object.builder.TradeOffersTypeAwareBuyForOneEmeraldFactoryMixin;
+import net.feyhoan.the_resurrection_talisman.item.ModItems;
 import net.feyhoan.the_resurrection_talisman.util.DeathData;
 import net.feyhoan.the_resurrection_talisman.util.UtilParticles;
 import net.feyhoan.the_resurrection_talisman.world.dimensions.ModDimensions;
@@ -29,17 +30,22 @@ public abstract class MixinPlayerReturn {
         ServerPlayerEntity player = (ServerPlayerEntity)(Object)this;
 
         if (player.getWorld().getRegistryKey() == ModDimensions.OVERWORLD_LIMBO_LEVEL_KEY) {
-            DeathData.DeathInfo info = DeathData.DEATHS.get(player.getUuid());
-
-            if (info != null && isStandingOnDeathPos(player, info.deathPos())) {
-                returnToOverworld(player, info);
-            }
+            DeathData.getDeathInfo(player.getUuid()).ifPresent(info -> {
+                if (isStandingOnDeathPos(player, info.deathPos())) {
+                    returnToOverworld(player, info);
+                    if (!player.getInventory().contains(ModItems.RESURRECTION_TALISMAN.getDefaultStack())) {
+                        player.getInventory().offerOrDrop(info.talisman().copy());
+                    }
+                    DeathData.removeDeathInfo(player.getUuid(), player.server);
+                }
+            });
         }
     }
 
+
     private boolean isStandingOnDeathPos(PlayerEntity player, BlockPos deathPos) {
         BlockPos currentPos = BlockPos.ofFloored(player.getPos());
-        return currentPos.equals(deathPos);
+        return currentPos.isWithinDistance(deathPos, 1.5); // 1.5 блока радиуса
     }
 
     private void returnToOverworld(ServerPlayerEntity player, DeathData.DeathInfo info) {

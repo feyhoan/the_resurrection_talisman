@@ -24,6 +24,8 @@ public class ModBlocks {
 
     public static final Block OVERWORLD_LIMBO_GRASS_BLOCK = registerBlock("overworld_limbo_grass_block",
             new Block(FabricBlockSettings.copyOf(Blocks.GRASS_BLOCK)));
+    public static final Block OVERWORLD_LIMBO_DIRT = registerBlock("overworld_limbo_dirt",
+            new Block(FabricBlockSettings.copyOf(Blocks.DIRT)));
 
 
     private static Item registerBlockItem(String name, Block block) {

@@ -2,6 +2,7 @@ package net.feyhoan.the_resurrection_talisman;
 
 import net.fabricmc.api.ModInitializer;
 
+import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.feyhoan.the_resurrection_talisman.block.ModBlocks;
 import net.feyhoan.the_resurrection_talisman.entity.ModEntities;
@@ -9,6 +10,7 @@ import net.feyhoan.the_resurrection_talisman.entity.custom.LostSpiritEntity;
 import net.feyhoan.the_resurrection_talisman.item.ModItemGroups;
 import net.feyhoan.the_resurrection_talisman.item.ModItems;
 import net.feyhoan.the_resurrection_talisman.sounds.ModSounds;
+import net.feyhoan.the_resurrection_talisman.util.DeathData;
 import net.feyhoan.the_resurrection_talisman.util.ModLootTableModifiers;
 import net.feyhoan.the_resurrection_talisman.world.ModFeatures;
 import net.feyhoan.the_resurrection_talisman.world.gen.ModWorldGeneration;
@@ -28,6 +30,8 @@ public class TheResurrectionTalisman implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		ServerLifecycleEvents.SERVER_STARTING.register(DeathData::load);
+		ServerLifecycleEvents.SERVER_STOPPING.register(DeathData::save);
 		ModFeatures.register();
 		ModItemGroups.registerItemGroups();
 		ModItems.registerModItems();

@@ -37,18 +37,10 @@ public abstract class MixinServerPlayerEntity {
     private void handleLimboTransition(DamageSource source, CallbackInfo ci) {
         ServerPlayerEntity player = (ServerPlayerEntity)(Object)this;
 
-        if (player.getWorld().getRegistryKey() == World.OVERWORLD &&
-                hasTalisman(player)) {
-
+        if (player.getWorld().getRegistryKey() == World.OVERWORLD && hasTalisman(player)) {
             DeathData.storeInventoryAndPosition(player);
-
-            // Очищаем инвентарь, оставляя только талисман
             clearInventoryExceptTalisman(player);
-
-            // Отменяем стандартную смерть
             ci.cancel();
-
-            // Телепорт в Лимбо
             teleportToLimbo(player);
         }
     }
@@ -96,6 +88,4 @@ public abstract class MixinServerPlayerEntity {
         // Очищаем оффхенд
         inv.offHand.set(0, ItemStack.EMPTY);
     }
-
-
 }

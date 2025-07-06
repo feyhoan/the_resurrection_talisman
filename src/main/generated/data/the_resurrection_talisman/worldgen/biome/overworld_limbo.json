@@ -31,10 +31,11 @@
     [],
     [
       "minecraft:trees_plains",
-      "minecraft:patch_grass_badlands"
+      "minecraft:patch_grass_badlands",
+      "minecraft:patch_tall_grass_2"
     ],
     [
-      "the_resurrection_talisman:replace_grass_placed"
+      "the_resurrection_talisman:replace_surface_placed"
     ]
   ],
   "has_precipitation": true,

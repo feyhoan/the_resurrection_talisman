@@ -27,7 +27,7 @@ public abstract class MixinServerWorld {
         if (particleTickCounter >= PARTICLE_INTERVAL) {
             particleTickCounter = 0;
 
-            DeathData.DEATHS.forEach((uuid, pos) -> {
+            DeathData.forEachDeathInfo((uuid, info) -> {
                 if (((World)(Object)this).getRegistryKey() == ModDimensions.OVERWORLD_LIMBO_LEVEL_KEY) {
                     // Get all players in limbo
                     for (ServerPlayerEntity player : ((ServerWorld)(Object)this).getPlayers()) {
@@ -35,13 +35,13 @@ public abstract class MixinServerWorld {
                         ParticlePathfinder.createPath(
                                 (ServerWorld)(Object)this,
                                 player.getPos(),
-                                Vec3d.ofCenter(pos.deathPos())
+                                Vec3d.ofCenter(info.deathPos())
                         );
                     }
-                    UtilParticles.spawnLimboMarker((ServerWorld)(Object)this, pos.deathPos());
+                    UtilParticles.spawnLimboMarker((ServerWorld)(Object)this, info.deathPos());
                 }
                 else if (((World)(Object)this).getRegistryKey() == World.OVERWORLD) {
-                    UtilParticles.spawnOverworldParticles((ServerWorld)(Object)this, pos.deathPos());
+                    UtilParticles.spawnOverworldParticles((ServerWorld)(Object)this, info.deathPos());
                 }
             });
         }

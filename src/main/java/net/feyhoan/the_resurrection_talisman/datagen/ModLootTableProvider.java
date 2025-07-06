@@ -26,51 +26,8 @@ public class ModLootTableProvider extends FabricBlockLootTableProvider {
     }
 
     public void generate() {
-
-    }
-
-    public LootTable.Builder createCandyTreeLeavesLoot(Block leaves, Block drop, Item dopDrop) {
-        return dropsWithSilkTouchOrShears(
-                leaves,
-                addSurvivesExplosionCondition(leaves, ItemEntry.builder(drop))
-                        .conditionally(
-                                TableBonusLootCondition.builder(Enchantments.FORTUNE, 0.05F, 0.0625F, 0.083333336F)
-                        )
-        )
-                .pool(
-                        LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
-                                .with(
-                                        applyExplosionDecay(leaves, ItemEntry.builder(Items.STICK))
-                                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)))
-                                                .conditionally(
-                                                        TableBonusLootCondition.builder(Enchantments.FORTUNE,
-                                                                0.02F,
-                                                                0.022222223F,
-                                                                0.025F,
-                                                                0.033333335F
-                                                        )
-                                                )
-                                )
-                )
-                .pool(
-                        LootPool.builder()
-                                .rolls(ConstantLootNumberProvider.create(1.0F))
-                                .conditionally(WITHOUT_SILK_TOUCH_NOR_SHEARS)
-                                .with(
-                                        applyExplosionDecay(leaves, ItemEntry.builder(dopDrop))
-                                                .apply(SetCountLootFunction.builder(UniformLootNumberProvider.create(1.0F, 2.0F)))
-                                                .conditionally(
-                                                        TableBonusLootCondition.builder(Enchantments.FORTUNE,
-                                                                0.02F,
-                                                                0.022222223F,
-                                                                0.025F,
-                                                                0.033333335F
-                                                        )
-                                                )
-                                )
-                );
+        addDrop(ModBlocks.OVERWORLD_LIMBO_GRASS_BLOCK);
+        addDrop(ModBlocks.OVERWORLD_LIMBO_DIRT);
     }
 
     public LootTable.Builder copperLikeOreDrops(Block drop, Item item) {

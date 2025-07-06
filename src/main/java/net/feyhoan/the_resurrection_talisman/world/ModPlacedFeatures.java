@@ -12,15 +12,15 @@ import net.minecraft.world.gen.feature.ConfiguredFeature;
 import java.util.List;
 
 public class ModPlacedFeatures {
-    public static final RegistryKey<PlacedFeature> REPLACE_GRASS_PLACED =
-            registerKey("replace_grass_placed");
+    public static final RegistryKey<PlacedFeature> REPLACE_SURFACE_PLACED =
+            registerKey("replace_surface_placed");
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         RegistryEntry<ConfiguredFeature<?, ?>> configuredFeature =
                 context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE)
-                        .getOrThrow(ModConfiguredFeatures.REPLACE_GRASS);
+                        .getOrThrow(ModConfiguredFeatures.REPLACE_SURFACE);
 
-        context.register(REPLACE_GRASS_PLACED,
+        context.register(REPLACE_SURFACE_PLACED,
                 new PlacedFeature(configuredFeature, List.of()));
     }
 

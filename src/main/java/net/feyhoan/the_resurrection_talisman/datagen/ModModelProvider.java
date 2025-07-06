@@ -23,6 +23,8 @@ public class ModModelProvider extends FabricModelProvider {
                 Models.CUBE_BOTTOM_TOP);
 
         blockStateModelGenerator.registerSingleton(ModBlocks.OVERWORLD_LIMBO_GRASS_BLOCK, factory);
+
+        blockStateModelGenerator.registerSimpleCubeAll(ModBlocks.OVERWORLD_LIMBO_DIRT);
     }
 
     @Override
